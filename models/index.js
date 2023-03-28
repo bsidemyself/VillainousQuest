@@ -2,6 +2,7 @@ const User = require('./User');
 const Quest = require('./Quest');
 const Comment = require('./Comment');
 
+
 User.hasMany(Quest, {
     foreignKey: 'user_id'
 });
