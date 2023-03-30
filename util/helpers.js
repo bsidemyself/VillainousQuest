@@ -1,5 +1,10 @@
 module.exports = {
-  // add helper functions for handlebars here
-  // Example:
-  // json: object => JSON.stringify(object, null, 4),
+  format_time: (date) => {
+    return date.toLocaleTimeString();
+  },
+  format_date: (date) => {
+    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${
+      new Date(date).getFullYear() + 5
+    }`;
+  },
 };

@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS db_quest;
-CREATE DATABASE db_quest;                                                    
+DROP DATABASE IF EXISTS quest_db;
+CREATE DATABASE quest_db;                                                    
