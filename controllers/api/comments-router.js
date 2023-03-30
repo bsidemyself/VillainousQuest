@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Quest } = require('../../models');
-const withAuth = require('../../utils/auth');
+const withAuth = require('../../util/withAuth');
 
-const comments = require('models\Comment.js');
+const comments = require('../../models');
 const { User } = require('../../models');
 
