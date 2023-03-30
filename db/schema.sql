@@ -1,2 +1,2 @@
-drop database if exists USERS_DB;
-create database USERS_DB;
+DROP DATABASE IF EXISTS db_quest;
+CREATE DATABASE db_quest;      
