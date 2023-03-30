@@ -1,3 +1,4 @@
 const router = require('express').Router();
-const comments = require('models\Comment.js')
+const { Quest } = require('../../models');
+const withAuth = require('../../utils/auth');
 

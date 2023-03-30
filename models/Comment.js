@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Comment extends Model {}
@@ -12,15 +11,31 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    description: {
+    comment_text: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    quest_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'quest',
+        key: 'id'
+      }
+    }
   },
+  
   {
     sequelize,
+    freezeTableName: true,
     timestamps: true,
-    modelName: 'Comment',
+    modelName: 'comment',
   }
 );
 
