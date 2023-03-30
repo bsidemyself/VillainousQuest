@@ -1,0 +1,23 @@
+[
+    {
+        "quest_title": "Mummy Issues",
+        "quest_setting": "Ancient Pyramid",
+        "quest_challenge": "Medium",
+        "quest_text": "A local researcher has become so obsessed with what he discovered in the crumbling pyramid that no one has seen him for days. His distraught daughter wants you to find him",
+        "user_id": "4"
+    },
+    {
+        "quest_title": "The Mausoleum of Mischief",
+        "quest_setting": "Creepy Graveyard",
+        "quest_challenge": "Easy",
+        "quest_text": "Rumors are that the long dead trickster illusionist Harkleboots has risen from his grave and is luring travelers in to see his deadly quote magic show, time to put a stop to it",
+        "user_id": "4"
+    },
+    {
+        "quest_title": "",
+        "quest_setting": "",
+        "quest_challenge": "",
+        "quest_text": "",
+        "user_id": ""
+    }
+]
