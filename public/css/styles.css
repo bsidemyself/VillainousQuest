@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  transition: 0.4s;
+  --black: black;
+  --red: rgb(128, 1, 1);
+  --gold: rgb(177, 166, 14);
+  --tan: rgb(179, 135, 84);
+}
+
+
+
+.navbar-background {
+  background-color: black;
+}
+
+.navbar-background .navbar-item {
+  color: gold;
+  font-family: 'MedievalSharp', cursive;
+}
+
+.navbar-background .navbar-item:hover {
+  color: red;
+}
+
+h1 {
+  font-size: 30px;
+  color: var(--gold);
+}
+
+body {
+  font-family: 'MedievalSharp';
+  font-size: 22px;
+  background-color: var(--red);
+  overflow-x: hidden;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-text {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 35px;
+  color: var(--gold);
+}
+
+.sub-text {
+  text-align: center;
+  padding: 15px;
+  color: var(--gold);
+}
+
+#home-bkgnd-photo {
+  background-image: url(../images/background-quest.jpg);
+  background-size: cover;
+  height: 100% ;
+  width: 100%;
+  background-repeat: no-repeat;
+
+}
+
+.btn {
+  color: var(--gold);
+  margin-top: 20px;
+}
+
+.btn:hover {
+  color: var(--red);
+  cursor: pointer;
+  background-color: white;
+}
+
+.login-form {
+  color: var(--gold);
+}
