@@ -1,52 +1,30 @@
 const User = require('./User');
-
-// Define sequelize associations in this file.
-
-// quest parameters:
-
-// 	Areas:
-		
-// 		Swamp
-
-// 		Classic Dungeon
-
-// 		Village
-
-// 		Forest
-
-// 		Desert
-
-// 		Tundra
-
-// 		Cave
-
-// 	Mission Type: 
-		
-// 		Siege
-		
-// 		Monster Hunt
-
-// 		Artefact Retrieval
-
-// 		Rescue
-		
-// 		Investigate
-
-// 		Escort
+const Quest = require('./Quest');
+const Comment = require('./Comment');
 
 
-// 	Number of Party Members:
+User.hasMany(Quest, {
+    foreignKey: 'user_id'
+});
 
-// 	Level of Difficulty: 
-			
-// 		Easy
+User.hasMany(Comment, {
+    foreignKey: 'user_id'
+});
 
-// 		Medium
+Quest.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 
-// 		Difficult
+Quest.hasMany(Comment, {
+    foreignKey: 'quest_id'
+});
 
-	
-// 	Length (Controls how many quests are generated): 
+Comment.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 
+Comment.belongsTo(Quest, {
+    foreignKey: 'quest_id'
+});
 
-module.exports = { User };
+module.exports = { User, Quest, Comment };
