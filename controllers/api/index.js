@@ -5,9 +5,9 @@ const homerouter = require('../home-router');
 const questrouter = require('./quest-router')
 
 router.use('/users', usersRouter);
-router.use('/', homerouter);
-router.use('/', commentsrouter);
-router.use('/', questrouter);
+// router.use('/', homerouter);
+// router.use('/', commentsrouter);
+// router.use('/', questrouter);
 
 
 
