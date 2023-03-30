@@ -3,7 +3,7 @@ const router = require('express').Router();
 const withAuth = require('../../util/withAuth');
 
 // const quest = require('models\Quest.js');
-const { Quest, Comment } = require('../../models');
+const { Quest } = require('../../models');
 
 router.get('/', withAuth, async (req, res) => {
     try {
@@ -55,3 +55,4 @@ router.get('/', withAuth, async (req, res) => {
 
         
 
+module.exports = router;
