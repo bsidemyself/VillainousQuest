@@ -9,23 +9,23 @@ const withAuth = require('..//util/withAuth')
 //   // ...
 // });
 
-router.get('/users-only', withAuth, async (req, res) => {
-try {
-  const data = await User.findByPk(req.session.userId, {
-    attributes: { exclude: ['password'] },
-    include: [{ model: Quest }],
-// To be finished
-  });
-  const user = userData.get({ plain: true });
+// router.get('/users-only', withAuth, async (req, res) => {
+// try {
+//   const data = await User.findByPk(req.session.userId, {
+//     attributes: { exclude: ['password'] },
+//     include: [{ model: Quest }],
+// // To be finished
+//   });
+//   const user = userData.get({ plain: true });
 
-  res.render('profile', {
-    ...user,
-    isLoggedIn: true
-  });
-} catch (err) {
-  res.status(500).json(err);
-}
-});
+//   res.render('profile', {
+//     ...user,
+//     isLoggedIn: true
+//   });
+// } catch (err) {
+//   res.status(500).json(err);
+// }
+// });
 
 router.get('/', async (req, res) => {
   try {
