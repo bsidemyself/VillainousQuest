@@ -1,22 +1,22 @@
 [
   {
-    "name": "Ser Dillon",
+    "username": "Ser Dillon",
     "email": "dillon@mail.com",
     "password": "password12345"
   },
   {
-    "name": "Ser James",
+    "username": "Ser James",
     "email": "james@mail.com",
     "password": "password54321"
   },
   {
-    "name": "Ser Matthew",
+    "username": "Ser Matthew",
     "email": "matthew@mail.com",
     "password": "password67890"
   },
   {
-      "name": "Ser Stephen",
-      "email": "stephen@mail.com",
-      "password": "password09876"
+    "username": "Ser Stephen",
+    "email": "stephen@mail.com",
+    "password": "password09876"
   }
 ]
