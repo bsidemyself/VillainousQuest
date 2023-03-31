@@ -2,6 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Quest extends Model {}
+//Match Seed  seed/questdata.json
+//Database Type ENUM
+
 
 Quest.init(
   {
@@ -18,26 +21,41 @@ Quest.init(
     description: {
       type: DataTypes.STRING,
     },
-    Areas: {
-      type: DataTypes.STRING,
-      area_Types: ['Swamp', 'Village', 'Forest', 'Desert', 'Tundra', 'Cave', 'Castle', 'Classic Dungeon'],
+    areas: {
+      type: DataTypes.ARRAY,
+      area_Types: ['Swamp','Forest', 'Desert', 'Frozen Tundra', 'Mountains'],
+    },
+    locations: {
+      type: DataTypes.ARRAY,
+      locations: ['Village','Ruins','Castle','Cave','Dungeon']
     },
     missionType: {
-      type: DataTypes.STRING,
-      mission_Types: ['Siege', 'Monster Hunt', 'Artefact Retrieval', 'Rescue', 'Investigate', 'Escort']
+      type: DataTypes.ARRAY,
+      mission_Types: ['Siege', 'Monster Hunt', 'Artifact Retrieval', 'Rescue', 'Investigate', 'Escort']
       },
-    // partySized: {
-    //     type: DataTypes.INTEGER,
-    // },
-    // difficultyLevel: {
-    //     type: DataTypes.STRING,
-    //     difficulty_Level: ['Easy', 'Medium', 'Hard']
-    // },  
+    monsterHunt: {
+      type: DataTypes.ARRAY,
+      monsters: ['Zombies', 'Manticore', 'Hydra', 'Minotaur', 'Werewolf']
+    },
+    magicItems: {
+      type: DataTypes.ARRAY,
+      items: ['Magic Sword', 'Crystal Ball', 'Staff of Fireball', 'Hand of Vecna', 'Magic Ring']
+    },
+    rescuePerson: {
+      type: DataTypes.ARRAY,
+      person: ['Princess', 'Town Baron', 'Monarch', 'Pet Goldfish', "Farmer's Daughter"]
+    },
+    escortMission: {
+      type: DataTypes.ARRAY,
+      escorts: ['Monarch', 'Prisoner', 'Wealthy Merchant', 'Supply Caravan', 'Wizard' ] 
+    },
+    difficultyLevel: {
+        type: DataTypes.STRING,
+        difficulty_Level: ['Easy', 'Medium', 'Hard']
+    },  
   },
   {
     sequelize,
-    freezeTableName: true,
-    underscored: true,
     modelName: 'quest',
   }
 );
