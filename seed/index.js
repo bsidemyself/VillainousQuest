@@ -1,8 +1,9 @@
 require('dotenv').config();
 const sequelize = require('../config/connection');
-const { User } = require('../models');
+const { User, Quest } = require('../models');
 
 const userData = require('./userData.json');
+const questData = require('./questData.json');
 
 const seedDatabase = async () => {
   try {
@@ -11,6 +12,12 @@ const seedDatabase = async () => {
       individualHooks: true,
       returning: true,
     });
+
+    for (const quest of questData) {
+      await Quest.create({
+        ...quest,
+      });
+    }
     console.log('Finished seeding database.');
   } catch (error) {
     console.error(error);
