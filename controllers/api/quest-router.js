@@ -5,7 +5,7 @@ const withAuth = require('../../util/withAuth');
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/quests', withAuth, async (req, res) => {
     try {
         const questdata = await Quest.findAll({
         include: [
@@ -28,7 +28,7 @@ router.get('/', withAuth, async (req, res) => {
     }
     });
 
-    router.get('/quest/:id', async (req, res) => {
+    router.get('/quest/id', async (req, res) => {
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
