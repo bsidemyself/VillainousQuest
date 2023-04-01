@@ -4,20 +4,24 @@ const router = require('express').Router();
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
+const { User } = require('../../models/');
 
 router.get('/', async (req, res) => {
     try {
-        const questdata = await Quest.findAll({
+        const quest = await Quest.findAll({
         include: [
             {
-                model: Comment,
-                attributes: ['description', 'id'],
-            }
-        ],  
+                model: Quest,
+                attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge'],
+            },
+            {
+                model: User,
+                attributes: ['user_id'],
+            },
+        ],
         });
-    const quests = questdata.map((questing) =>
-    questing.get({ plain: true })
-    );
+    const quests = Quest.map((quest) =>
+    quest.get({ plain: true }));
     res.render('homepage', {
         quests,
         loggedIn: req.session.loggedIn
@@ -36,7 +40,11 @@ router.get('/', async (req, res) => {
                 const questdata = await Quest.findByPK(req.params.id, {
                     include: [
                         {
-                            model: Comment,
+                            model: Quest,
+                            attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge', ],
+                        },
+                        {
+                            model: User,
                             attributes: [
                                 'id',
                                 'description',
