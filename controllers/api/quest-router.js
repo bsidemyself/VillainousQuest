@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const withAuth = require('../../util/withAuth');
+// const withAuth = require('../../util/withAuth');
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
 
-router.get('/quests', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const questdata = await Quest.findAll({
         include: [
