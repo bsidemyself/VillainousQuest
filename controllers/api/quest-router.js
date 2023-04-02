@@ -1,28 +1,23 @@
 const router = require('express').Router();
 
-// const withAuth = require('../../util/withAuth');
+const withAuth = require('../../util/withAuth');
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
-// const { User } = require('../../models/');
+const { User } = require('../../models/');
 
 router.get('/', async (req, res) => {
     try {
         const questdata = await Quest.findAll({
-        include: [
-            {
-                attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge'],
+         
+            attributes: {
                 order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'description']
-            },
-            {
-                model: User,
-                attributes: ['user_id'],
-            },
-        ],
+            }
+        
         });
     const quests = questdata.map((quest) =>
     quest.get({ plain: true }));
-    res.render('homepage', {
+    res.render('home', {
         quests,
         loggedIn: req.session.loggedIn
     });
