@@ -4,15 +4,15 @@ const router = require('express').Router();
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
-const { User } = require('../../models/');
+// const { User } = require('../../models/');
 
 router.get('/', async (req, res) => {
     try {
-        const quest = await Quest.findAll({
+        const questdata = await Quest.findAll({
         include: [
             {
-                model: Quest,
                 attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge'],
+                order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'description']
             },
             {
                 model: User,
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
             },
         ],
         });
-    const quests = Quest.map((quest) =>
+    const quests = questdata.map((quest) =>
     quest.get({ plain: true }));
     res.render('homepage', {
         quests,
@@ -61,6 +61,34 @@ router.get('/', async (req, res) => {
             }
         });
 
+        router.post('/', withAuth, async (req, res) => {
+            try {
+                const questdata = await Quest.create({
+                    ...req.body,
+                    user__id: req.session.user_id,
+                });
+                res.status(200).json(questdata);
+            } catch (err) {
+                res.status(400).json(err);
+            }
+        });
+
+        router.delete('/:id', withAuth, async (req, res) => {
+            try {
+                const questdata = await Quest.destroy({
+                    where: {
+                        id: req.params.id,
+                        user_id: req.session.user_id,
+                    },
+                });
+                if (!questdata) {
+                    res.status(404).json({ message: 'Invalid quest ID, please try another one' });
+                }
+                res.status(200).json(questdata);
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        });
         
 
 module.exports = router;
