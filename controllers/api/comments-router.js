@@ -25,7 +25,7 @@ router.get('/', withAuth, async (req, res) => {
     }
     });
 
-    router.get('/comment/:id', async (req, res) => {
+    router.get('/comment/id', async (req, res) => {
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
