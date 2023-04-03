@@ -11,7 +11,7 @@ if (!process.env.SECRET) {
 
 // Configure session options
 const sess = {
-  secret: process.env.SECRET,
+  secret: 'bootcampbros',
   cookie: {
     // cookies expire after 1 day (time in milliseconds)
     maxAge: 8.64e7,
