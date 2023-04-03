@@ -1,24 +1,23 @@
 const router = require('express').Router();
 
-// const withAuth = require('../../util/withAuth');
+const withAuth = require('../../util/withAuth');
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
+const { User } = require('../../models/');
 
 router.get('/', async (req, res) => {
     try {
         const questdata = await Quest.findAll({
-        include: [
-            {
-                model: Comment,
-                attributes: ['description', 'id'],
+         
+            attributes: {
+                order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'description']
             }
-        ],  
+        
         });
-    const quests = questdata.map((questing) =>
-    questing.get({ plain: true })
-    );
-    res.render('homepage', {
+    const quests = questdata.map((quest) =>
+    quest.get({ plain: true }));
+    res.render('home', {
         quests,
         loggedIn: req.session.loggedIn
     });
@@ -28,7 +27,7 @@ router.get('/', async (req, res) => {
     }
     });
 
-    router.get('/quest/:id', async (req, res) => {
+    router.get('/quest/id', async (req, res) => {
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -36,7 +35,11 @@ router.get('/', async (req, res) => {
                 const questdata = await Quest.findByPK(req.params.id, {
                     include: [
                         {
-                            model: Comment,
+                            model: Quest,
+                            attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge', ],
+                        },
+                        {
+                            model: User,
                             attributes: [
                                 'id',
                                 'description',
@@ -53,6 +56,34 @@ router.get('/', async (req, res) => {
             }
         });
 
+        router.post('/', withAuth, async (req, res) => {
+            try {
+                const questdata = await Quest.create({
+                    ...req.body,
+                    user__id: req.session.user_id,
+                });
+                res.status(200).json(questdata);
+            } catch (err) {
+                res.status(400).json(err);
+            }
+        });
+
+        router.delete('/:id', withAuth, async (req, res) => {
+            try {
+                const questdata = await Quest.destroy({
+                    where: {
+                        id: req.params.id,
+                        user_id: req.session.user_id,
+                    },
+                });
+                if (!questdata) {
+                    res.status(404).json({ message: 'Invalid quest ID, please try another one' });
+                }
+                res.status(200).json(questdata);
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        });
         
 
 module.exports = router;
