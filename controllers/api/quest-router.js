@@ -57,11 +57,11 @@ router.get('/', async (req, res) => {
             }
         });
 
-        router.post('/:id', withAuth, async (req, res) => {
+        router.post('/', withAuth, async (req, res) => {
             try {
                 const questdata = await Quest.create({
                     ...req.body,
-                    user_id: req.session.user_id,
+                    userId: req.session.userId,
                 });
                 res.status(200).json(questdata);
             } catch (err) {
@@ -74,7 +74,7 @@ router.get('/', async (req, res) => {
                 const questdata = await Quest.destroy({
                     where: {
                         id: req.params.id,
-                        user_id: req.session.user_id,
+                        userId: req.session.userId,
                     },
                 });
                 if (!questdata) {
