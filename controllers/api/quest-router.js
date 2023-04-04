@@ -9,7 +9,6 @@ const { User } = require('../../models/');
 router.get('/', async (req, res) => {
     try {
         const questdata = await Quest.findAll({
-         
             attributes: {
                 order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'description']
             }
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
         });
     const quests = questdata.map((quest) =>
     quest.get({ plain: true }));
-    res.render('home', {
+    res.render('dashboard', {
         quests,
         loggedIn: req.session.loggedIn
     });
