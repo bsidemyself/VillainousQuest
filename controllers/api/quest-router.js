@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     }
     });
 
-    router.get('/quest/id', async (req, res) => {
+    router.get('/:id', async (req, res) => {
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -36,15 +36,16 @@ router.get('/', async (req, res) => {
                         {
                             model: Quest,
                             attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge', ],
-                        },
-                        {
-                            model: User,
-                            attributes: [
-                                'id',
-                                'description',
-                            ],
-                        },
-                    ],
+                        // },
+                        // {
+                        //     model: User,
+                        //     attributes: [
+                        //         'id',
+                        //         'description',
+                        //     ],
+                        // },
+                        }
+                    ]
                 });
                 const quests = questdata.get({ plain: true });
                 res.render('quests', { quests, loggedIn: req.session.loggedIn});
@@ -55,11 +56,11 @@ router.get('/', async (req, res) => {
             }
         });
 
-        router.post('/', withAuth, async (req, res) => {
+        router.post('/:id', withAuth, async (req, res) => {
             try {
                 const questdata = await Quest.create({
                     ...req.body,
-                    user__id: req.session.user_id,
+                    user_id: req.session.user_id,
                 });
                 res.status(200).json(questdata);
             } catch (err) {
