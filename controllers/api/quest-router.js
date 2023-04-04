@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     }
     });
 
-    router.get('/quest/id', async (req, res) => {
+    router.get('/:id', async (req, res) => {
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -35,6 +35,7 @@ router.get('/', async (req, res) => {
                     include: [
                         {
                             model: Quest,
+
                             attributes: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'quest_text'],
                         },
                         {
@@ -45,6 +46,7 @@ router.get('/', async (req, res) => {
                             ],
                         },
                     ],
+
                 });
                 const quests = questdata.get({ plain: true });
                 res.render('dashboard', { quests, loggedIn: req.session.loggedIn});
@@ -55,7 +57,7 @@ router.get('/', async (req, res) => {
             }
         });
 
-        router.post('/', withAuth, async (req, res) => {
+        router.post('/:id', withAuth, async (req, res) => {
             try {
                 const questdata = await Quest.create({
                     ...req.body,
