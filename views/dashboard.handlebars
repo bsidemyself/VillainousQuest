@@ -7,9 +7,17 @@
         <label for="quest-title">Title</label>
         <input type="text" id="quest-title" name="quest-title" />
       </div>
+            <div>
+        <label for="quest-title">Setting</label>
+        <input type="text" id="quest-setting" name="quest-setting" />
+      </div>
+            <div>
+        <label for="quest-title">Challenge</label>
+        <input type="text" id="quest-challenge" name="quest-challenge" />
+      </div>
       <div>
-        <label for="quest-body"></label>
-        <textarea id="quest-body" name="quest-body"></textarea>
+        <label for="quest-text">Description</label>
+        <textarea id="quest-text" name="quest-text"></textarea>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
@@ -21,7 +29,7 @@
   <section>
     <h2>Quests</h2>
     <ul>
-      {{#each quests}}
+      {{#each quests as |quest|}}
         <li>
           <h4>{{quest_title}}</h4>
           <h4>{{quest_setting}}</h4>
@@ -35,4 +43,22 @@
   <p>No quests found.</p>
 {{/if}}
 
-<script src="/js/add-quest.js"></script>
+  {{!-- {{#if quests.length}}
+  <div class="col-md-6 quest-list">
+    <h3>Quests:</h3>
+
+    {{#each quests as |quest|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/quest/{{quest.id}}">{{quest.title}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{quest.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div> --}}
+
+<script src="/js/dashboard.js"></script>
