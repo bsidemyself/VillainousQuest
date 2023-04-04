@@ -4,13 +4,13 @@ const withAuth = require('../../util/withAuth');
 
 // const quest = require('models\Quest.js');
 const { Quest } = require('../../models');
-const { User } = require('../../models/');
+const { User } = require('../../models');
 
 router.get('/', async (req, res) => {
     try {
         const questdata = await Quest.findAll({
             attributes: {
-                order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'description']
+                order: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'quest_text']
             }
         
         });
@@ -35,20 +35,21 @@ router.get('/', async (req, res) => {
                     include: [
                         {
                             model: Quest,
-                            attributes: ['description', 'id', 'quest_title', 'quest_setting', 'quest_challenge', ],
-                        // },
-                        // {
-                        //     model: User,
-                        //     attributes: [
-                        //         'id',
-                        //         'description',
-                        //     ],
-                        // },
-                        }
-                    ]
+
+                            attributes: ['id', 'quest_title', 'quest_setting', 'quest_challenge', 'quest_text'],
+                        },
+                        {
+                            model: User,
+                            attributes: [
+                                'id',
+                                'username',
+                            ],
+                        },
+                    ],
+
                 });
                 const quests = questdata.get({ plain: true });
-                res.render('quests', { quests, loggedIn: req.session.loggedIn});
+                res.render('dashboard', { quests, loggedIn: req.session.loggedIn});
             } catch (err) {
                 console.error(err);
                 res.status(500).json(err);
