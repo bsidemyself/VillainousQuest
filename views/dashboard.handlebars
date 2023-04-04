@@ -1,23 +1,27 @@
 <section class="row">
-  <div class = "column">
-    <h2>Create New Quest</h2>
+  
+  <div class="column">
+    
 
     <form class="new-quest-form">
+      <h1>Create New Quest</h1>
       <div>
-        <label for="quest-title">Title</label>
+        <label for="quest-title">Title: </label>
         <input type="text" id="quest-title" name="quest-title" />
       </div>
-            <div>
-        <label for="quest-title">Setting</label>
+      <div>
+        <label for="quest-setting">Setting: </label>
         <input type="text" id="quest-setting" name="quest-setting" />
       </div>
-            <div>
-        <label for="quest-title">Challenge</label>
+      <div>
+        <label for="quest-setting">Challenge: </label>
         <input type="text" id="quest-challenge" name="quest-challenge" />
       </div>
-      <div>
-        <label for="quest-text">Description</label>
-        <textarea id="quest-text" name="quest-text"></textarea>
+      <div class="description">
+        <label for="quest-text">Description:</label>
+        <div>
+          <textarea id="quest-text" name="quest-text"></textarea>
+        </div>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
@@ -25,40 +29,46 @@
 
 </section>
 
+
 {{#if quests.length}}
-  <section>
-    <h2>Quests</h2>
-    <ul>
-      {{#each quests as |quest|}}
-        <li>
-          <h4>{{quest_title}}</h4>
-          <h4>{{quest_setting}}</h4>
-          <h4>{{quest_challenge}}</h4>
-          <p>{{quest_text}}</p>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
+<section>
+  <h1>Quests</h1>
+  <ul>
+    {{#each quests as |quest|}}
+    <card class="quest-card">
+      <li>
+        <h4><span style="color: white;">Quest Title:</span> {{quest.quest_title}}</h4>
+        <h4><span style="color: white;">Quest Setting:</span> {{quest.quest_setting}}</h4>
+        <h4><span style="color: white;">Quest Challenge:</span> {{quest.quest_challenge}}</h4>
+        <h4 style="color:white; margin-top:2%;">Description: </h4>
+        <p>{{quest.quest_text}}</p>
+      </li>
+    </card>
+    {{/each}}
+  </ul>
+
+</section>
+
 {{else}}
-  <p>No quests found.</p>
+<p>No quests found.</p>
 {{/if}}
 
-  {{!-- {{#if quests.length}}
-  <div class="col-md-6 quest-list">
-    <h3>Quests:</h3>
+{{!-- {{#if quests.length}}
+<div class="col-md-6 quest-list">
+  <h3>Quests:</h3>
 
-    {{#each quests as |quest|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/quest/{{quest.id}}">{{quest.title}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{quest.id}}">DELETE</button>
-      </div>
+  {{#each quests as |quest|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <h4><a href="/quest/{{quest.id}}">{{quest.title}}</a></h4>
     </div>
-    {{/each}}
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-danger" data-id="{{quest.id}}">DELETE</button>
+    </div>
   </div>
-  {{/if}}
+  {{/each}}
+</div>
+{{/if}}
 </div> --}}
 
 <script src="/js/dashboard.js"></script>
