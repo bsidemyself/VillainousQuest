@@ -14,10 +14,6 @@
       <button type="submit" class="btn">Create</button>
     </form>
   </div>
-  <div class = "column">
-    <h2>About Me</h2>
-    {{> user-info}}
-  </div>
 
 </section>
 
@@ -27,7 +23,9 @@
     <ul>
       {{#each quests}}
         <li>
-          <h3>{{quest_title}}</h3>
+          <h4>{{quest_title}}</h4>
+          <h4>{{quest_setting}}</h4>
+          <h4>{{quest_challenge}}</h4>
           <p>{{quest_text}}</p>
         </li>
       {{/each}}
