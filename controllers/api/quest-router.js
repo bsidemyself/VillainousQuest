@@ -5,6 +5,7 @@ const withAuth = require("../../util/withAuth");
 // const quest = require('models\Quest.js');
 const { Quest } = require("../../models");
 const { User } = require("../../models/");
+const { update } = require("../../models/User");
 
 router.get("/", async (req, res) => {
   try {
@@ -66,17 +67,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  try {
+router.post("/quests", ({body}, res) => {
+
     // Conflict is within 72 and 75. Console log 
-    const questdata = await Quest.create({
-      ...req.body,
-      "user_id": req.session.user_id,
-    });
-    res.status(200).json(questdata);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+ Quest.create(body)
+ .then(dbQuest => {
+  res.json(dbQuest);
+ })
+ .catch(err => {
+  res.status(404).json(err);
+ });
+
+});
+
+router.post("/", ({body}, res) => {
+  Quest.bulkCreate(body)
+  .then(dbQuest => {
+    res.json(dbQuest);
+  })
+.catch(err => {
+  res.status(404).json(err);
+});
 });
 
 router.delete("/:id", withAuth, async (req, res) => {
