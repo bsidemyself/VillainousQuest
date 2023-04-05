@@ -1,9 +1,17 @@
-document.querySelector('.btn-logout').addEventListener('click', async () => {
-  try {
-    await fetch('/api/users/logout', { method: 'POST' });
-    document.location.replace('/login');
-  } catch (error) {
-    console.error(error);
-    console.error('Failed to logout.');
-  }
-});
+
+console.log("test1")
+const logout = async () => {
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      document.location.replace('/login');
+      isLoggedIn = false
+    } else {
+      alert(response.statusText);
+    }
+  };
+  
+  document.querySelector('#logout').addEventListener('click', logout);
