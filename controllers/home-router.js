@@ -55,4 +55,5 @@ router.get('/signup', (req, res) => {
   res.render('signup', { title: 'Sign-Up Page' });
 });
 
+router.get('')
 module.exports = router;

@@ -16,7 +16,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/api/quests');
       } else {
         alert('Failed to create quest');
       }
@@ -32,7 +32,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/api/quests');
       } else {
         alert('Failed to delete quest');
       }
