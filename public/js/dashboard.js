@@ -7,7 +7,7 @@ const newFormHandler = async (event) => {
     const text = document.querySelector('#quest-text').value.trim();
   
     if (title && setting && challenge && text) {
-      const response = await fetch(`/api/quests`, {
+      const response = await fetch(`/quests`, {
         method: 'POST',
         body: JSON.stringify({ title, setting, challenge, text }),
         headers: {
@@ -16,7 +16,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/api/quests');
+        document.location.replace('/quests');
       } else {
         alert('Failed to create quest');
       }
@@ -27,12 +27,12 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/quests/${id}`, {
+      const response = await fetch(`/quests/${id}`, {
         method: 'DELETE',
       });
   
       if (response.ok) {
-        document.location.replace('/api/quests');
+        document.location.replace('/quests');
       } else {
         alert('Failed to delete quest');
       }

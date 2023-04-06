@@ -12,11 +12,11 @@ router.get("/", async (req, res) => {
     const questdata = await Quest.findAll({
       attributes: {
         order: [
-          "id",
+          "user_id",
           "quest_title",
           "quest_setting",
           "quest_challenge",
-          "description",
+          "quest_text",
         ],
       },
     });
@@ -41,8 +41,8 @@ router.get("/:id", async (req, res) => {
           {
             model: Quest,
             attributes: [
-              "description",
-              "id",
+              "quest_text",
+              "user_id",
               "quest_title",
               "quest_setting",
               "quest_challenge",
@@ -68,7 +68,10 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/quests", ({body}, res) => {
-
+  res.send("dashboard", {
+    Quest,
+    loggedIn: req.session.loggedIn,
+  });
     // Conflict is within 72 and 75. Console log 
  Quest.create(body)
  .then(dbQuest => {
