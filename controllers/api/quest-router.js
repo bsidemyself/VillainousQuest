@@ -4,8 +4,8 @@ const withAuth = require("../../util/withAuth");
 
 // const quest = require('models\Quest.js');
 const { Quest } = require("../../models");
-const { User } = require("../../models/");
-const { update } = require("../../models/User");
+const { User } = require("../../models");
+// const { update } = require("../../models/User");
 
 router.get("/", async (req, res) => {
   try {
@@ -67,31 +67,33 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/quests", ({body}, res) => {
-  res.send("dashboard", {
-    Quest,
-    loggedIn: req.session.loggedIn,
-  });
-    // Conflict is within 72 and 75. Console log 
- Quest.create(body)
- .then(dbQuest => {
-  res.json(dbQuest);
- })
- .catch(err => {
-  res.status(404).json(err);
- });
-
+router.post("/quests", (req, res) => {
+  console.log("inside quest post");
+  // res.send("dashboard", {
+  //   Quest,
+  //   loggedIn: req.session.loggedIn,
+  // });
+  // Conflict is within 72 and 75. Console log
+  Quest.create(req.body)
+    .then((dbQuest) => {
+      console.log("quest created", dbQuest);
+      res.json(dbQuest);
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err);
+    });
 });
 
-router.post("/", ({body}, res) => {
-  Quest.bulkCreate(body)
-  .then(dbQuest => {
-    res.json(dbQuest);
-  })
-.catch(err => {
-  res.status(404).json(err);
-});
-});
+// router.post("/", ({ body }, res) => {
+//   Quest.bulkCreate(body)
+//     .then((dbQuest) => {
+//       res.json(dbQuest);
+//     })
+//     .catch((err) => {
+//       res.status(404).json(err);
+//     });
+// });
 
 router.delete("/:id", withAuth, async (req, res) => {
   try {
