@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
     }
     const isValidPassword = await user.checkPassword(password);
     if (!isValidPassword) {
-      throw new Error('Invalid password');
+      throw new Error('Invalid password!');
     }
     req.session.isLoggedIn = true;
     req.session.userId = user.id;
