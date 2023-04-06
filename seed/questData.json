@@ -26,5 +26,12 @@
         "quest_challenge": "Hard",
         "quest_text": "What is going on at that old keep on the hill, and why is the name spelled incorrectly",
         "user_id": "4"
-    }                           
+    },        
+{
+    "quest_title": "The Keep of Khaos",
+        "quest_setting": "Old Castle",
+        "quest_challenge": "Hard",
+        "quest_text": "What is going on at that old keep on the hill, and why is the name spelled incorrectly",
+        "user_id": "4"
+}
 ]
