@@ -34,7 +34,7 @@ router.post('/users/login', async (req, res) => {
   }
 });
 
-router.post('/users', (req, res) => {
+router.post('/', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error(err);
