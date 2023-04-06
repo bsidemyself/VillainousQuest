@@ -4,19 +4,37 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css'>
+    <link rel='stylesheet' href='css/styles.css' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=MedievalSharp'>
+    <link rel="icon" type+ "image/png" href="https://wallpapercave.com/wp/wp4786829.png">
+
   </head>
-  <body>
-    <nav>
-      <a href='/'>Home</a>
-      {{#if isLoggedIn}}
-        <button class='btn btn-logout'>Log Out</button>
-      {{else}}
-        <a href='/login'>login</a>
-        <a href='/signup'>signup</a>
-      {{/if}}
+  <body id="home-bkgnd-photo">
+    <nav class='navbar navbar-background is-fixed-top'>
+      <div class='navbar-brand'>
+        <a class='navbar-item' href='/'>
+          <img src='https://wallpapercave.com/wp/wp4786829.png' alt='Villainous Quest logo'>
+        </a>
+      </div>
+      <div class='navbar-menu'>
+        <div class='navbar-start'>
+          <a class='navbar-item' href='/'>Villainous Quest</a>
+          <a class='navbar-item' href='/quests'>Quests</a>
+        </div>
+        <div class='navbar-end'>
+          {{#if isLoggedIn}}
+            <a class='navbar-item' id="logout">Log Out</a>
+          {{else}}
+            <a class='navbar-item' href='/login'>Login</a>
+            <a class='navbar-item' href='/signup'>Signup</a>
+          {{/if}}
+        </div>
+      </div>
     </nav>
-    {{{body}}}
+    <div class='container'>
+      {{{body}}}
+    </div>
     <script src='/js/main.js'></script>
   </body>
 </html>

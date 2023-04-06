@@ -1,10 +1,33 @@
-<h1>Login</h1>
-<form class='login-form'>
-  <label for='username'>Username</label><br />
-  <input type='text' name='username' id='username' /><br />
-  <label for='password'>Password</label><br />
-  <input type='password' name='password' id='password' /><br />
-  <button class='btn' type='submit'>Submit</button>
-</form>
-<p>Don't have an account yet? <a href='/signup'>Sign Up Here</a></p>
+<div class="card">
+  <h1>Login</h1>
+  <form class="login-form">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" id="username"><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="password" id="password"><br>
+    <button class="btn" type="submit">Submit</button>
+    <p>Don't have an account yet? <a href="/signup">Sign Up Here</a></p>
+  </form>
+</div>
+
 <script src='/js/login.js'></script>
+
+{{! the part below can be uncommented and used instead if needed}}
+
+{{!-- <form class="login-form">
+  <div>
+    <label for="email-login">Email:</label>
+    <input type="text" id="email-login" />
+  </div>
+  <div>
+    <label for="password-login">Password:</label>
+    <input type="password" id="password-login" />
+  </div>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+<a href="/signup">Sign up instead?</a>
+
+<script src='/js/login.js'></script> --}}

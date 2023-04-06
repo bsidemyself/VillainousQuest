@@ -1,7 +1,7 @@
 const session = require('express-session');
 const sequelize = require('./connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+require('dotenv').config();
 // Check for SECRET env var and throw an error if it isn't set.
 if (!process.env.SECRET) {
   // add SECRET=<your session secret> to .env file in local development. Add
@@ -11,7 +11,7 @@ if (!process.env.SECRET) {
 
 // Configure session options
 const sess = {
-  secret: process.env.SECRET,
+  secret: 'bootcampbros',
   cookie: {
     // cookies expire after 1 day (time in milliseconds)
     maxAge: 8.64e7,
