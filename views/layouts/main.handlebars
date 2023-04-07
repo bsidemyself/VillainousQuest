@@ -20,10 +20,11 @@
       <div class='navbar-menu'>
         <div class='navbar-start'>
           <a class='navbar-item' href='/'>Villainous Quest</a>
-          <a class='navbar-item' href='/quests'>Quests</a>
+          
         </div>
         <div class='navbar-end'>
           {{#if isLoggedIn}}
+            <a class='navbar-item' href='/quests'>Quests</a>
             <a class='navbar-item' id="logout">Log Out</a>
           {{else}}
             <a class='navbar-item' href='/login'>Login</a>
