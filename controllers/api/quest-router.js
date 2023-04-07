@@ -67,31 +67,48 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/quests", ({body}, res) => {
-  res.send("dashboard", {
-    Quest,
-    loggedIn: req.session.loggedIn,
-  });
-    // Conflict is within 72 and 75. Console log 
- Quest.create(body)
- .then(dbQuest => {
-  res.json(dbQuest);
- })
- .catch(err => {
-  res.status(404).json(err);
- });
-
-});
-
-router.post("/", ({body}, res) => {
-  Quest.bulkCreate(body)
-  .then(dbQuest => {
+router.post('/', (req, res) => {
+  const {title: quest_title, setting: quest_setting, challenge: quest_challenge, text: quest_text} = req.body
+  Quest.create({quest_title, quest_setting, quest_challenge, quest_text})
+  .then((dbQuest) => {
     res.json(dbQuest);
   })
-.catch(err => {
-  res.status(404).json(err);
+  .catch((err) => {
+    res.status(500).json(err);
+  });
 });
-});
+
+
+
+
+
+// TEMP COMMENT OUT BELOW
+
+// router.post("/quests", ({body}, res) => {
+//   res.send("dashboard", {
+//     Quest,
+//     loggedIn: req.session.loggedIn,
+//   });
+//     // Conflict is within 72 and 75. Console log 
+//  Quest.create(body)
+//  .then(dbQuest => {
+//   res.json(dbQuest);
+//  })
+//  .catch(err => {
+//   res.status(404).json(err);
+//  });
+
+// });
+
+// router.post("/", ({body}, res) => {
+//   Quest.bulkCreate(body)
+//   .then(dbQuest => {
+//     res.json(dbQuest);
+//   })
+// .catch(err => {
+//   res.status(404).json(err);
+// });
+// });
 
 router.delete("/:id", withAuth, async (req, res) => {
   try {
