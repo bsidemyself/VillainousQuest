@@ -39,7 +39,7 @@ Quest.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Quest',
+        modelName: 'quest',
     }
 );
 
