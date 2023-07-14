@@ -20,4 +20,6 @@ This app utilizes ExpressJS, NodeJS, MySQL, Sequelize and Handlebars.  As a new 
 # To Use App
 Use mySQL to create the database, run node seed/index.js to seed the database, then npm install and npm start to run.
 # Links
-https://github.com/Dtinkham/Villianous-Quest
+https://github.com/bsidemyself/VillainousQuest
+# Heroku Deployed
+https://villainous-quest.herokuapp.com/
