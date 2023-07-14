@@ -1,3 +1,5 @@
+const { Quest } = require("../../models");
+
 const newFormHandler = async (event) => {
   event.preventDefault();
 
@@ -23,21 +25,44 @@ const newFormHandler = async (event) => {
   }
 };
 
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+function renderQuest(Quest){
+  let deleteQuest = document.createElement("button")
+    deleteQuest.setAttribute('id', 'delete-btn')
+    deleteQuest.innerText = "delete listing"
+    deleteQuest.addEventListener("click", function(event) {
+    
+    console.log("test222 home id ", QuestDiv.id)
+    
+    if (event.target.id === 'delete-btn') {
+    fetch(`http://localhost:3000/homes/${Quest.id}`, {
+    method: "DELETE",
+    headers: {
+    "content-type": "application/json",
+    accept: "application/json"
+    }
+    }).then(resp => resp.json())
+    .then(() => {
+    QuestDiv.innerHTML = "";
+    const quest = QuestDiv.querySelector(`[data-id='${QuestDiv.id}']`);
+    Quest.remove();
+    })
+    
+    }
+    })
+  }
+// const delButtonHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/quests/${id}`, {
-      method: 'DELETE',
-    });
+//     const response = await fetch(`/quests/${id}`, {
+//       method: 'DELETE',
+//     });
 
     if (response.ok) {
       document.location.replace('/quests');
     } else {
       alert('Failed to delete quest');
-    }
-  }
-};
+    };
 
 document
   .querySelector('.new-quest-form')
